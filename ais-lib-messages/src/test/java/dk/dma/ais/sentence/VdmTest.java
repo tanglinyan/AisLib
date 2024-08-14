@@ -86,4 +86,21 @@ public class VdmTest {
 
         assertThat(secondParseResult, is(0));
     }
+
+    @Test
+    public void test() throws SentenceException {
+        String sentence = "!AIVDM,2,1,8,B,C69@`g0002;aL@4BA<HCGwv0@NO;:2222222220o5@d6800Ht<SRCQhSp888,0*65";
+        Vdm vdm = new Vdm();
+
+        System.out.println(vdm.parse(sentence));
+        System.out.println(vdm.parse("!AIVDM,2,2,8,B,88888888880,2*2F"));
+        try {
+            AisMessage aisMessage = AisMessage.getInstance(vdm);
+            System.out.println(aisMessage.toString());
+        } catch (AisMessageException e) {
+            throw new RuntimeException(e);
+        } catch (SixbitException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

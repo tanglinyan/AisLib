@@ -126,7 +126,8 @@ public class AisMessage19 extends AisStaticCommon implements IVesselPositionMess
     @Override
     protected void parse(BinArray binArray) throws AisMessageException, SixbitException {
         BinArray sixbit = vdm.getBinArray();
-        if (sixbit.getLength() != 312) {
+        //The standard is not uniform, some are 424 length
+        if (sixbit.getLength() != 312 && sixbit.getLength() != 424) {
             throw new AisMessageException("Message 19 wrong length " + sixbit.getLength());
         }
 
